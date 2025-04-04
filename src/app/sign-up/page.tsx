@@ -44,7 +44,7 @@ export default function Register() {
     try {
       const response = await axios.post("/api/register", data);
       console.log(response.data);
-      router.replace(`/verify?email=${data.email}`);
+      router.replace("/sign-in");
     } catch (error) {
       throw new Error("Failed to register");
     }
@@ -80,7 +80,7 @@ export default function Register() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Username</FormLabel>
+                  <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input placeholder="Email" {...field} />
                   </FormControl>

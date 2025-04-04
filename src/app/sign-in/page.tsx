@@ -41,7 +41,7 @@ export default function SignIn() {
       password: data.password,
     });
     if (response?.url) {
-      router.replace("/chat");
+      router.replace("/");
     } else {
       throw new Error("Failed to get login");
     }
@@ -90,6 +90,7 @@ export default function SignIn() {
               <Button type="submit">Submit</Button>
 
               <Link href="/inputemail">Forget Password</Link>
+              <Link href="/sign-up">Sign up</Link>
             </div>
           </form>
         </Form>
