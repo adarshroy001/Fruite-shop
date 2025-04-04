@@ -1,103 +1,95 @@
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Testimonial } from "@/components/testimonial";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <>
+      {/* Hero Section */}
+      <section className="relative h-[500px] w-full">
+        <div className="absolute inset-0 bg-[url('/images/hero-bg.jpg')] bg-cover bg-center brightness-50" />
+        <div className="container relative flex h-full flex-col items-start justify-center gap-4 text-white">
+          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+            Welcome to Farmley
+          </h1>
+          <p className="max-w-[600px] text-lg">
+            Your one-stop destination for premium quality dry fruits. Our
+            products are sourced from the finest farms to ensure freshness and
+            nutrition in every bite.
+          </p>
+          <p className="text-xl font-semibold italic">
+            &quot;Pure, Nutritious, and Delicious Dry Fruits.&quot;
+          </p>
+          <Button asChild size="lg">
+            <Link href="/products">Shop Now</Link>
+          </Button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      {/* About Section */}
+      <section className="container py-16">
+        <div className="grid gap-12 md:grid-cols-2">
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight">About Farmley</h2>
+            <p className="mt-4 text-muted-foreground">
+              At Farmley, we are passionate about bringing you the finest dry
+              fruits directly from trusted farmers. Our commitment to quality
+              and authenticity ensures that every product meets the highest
+              standards.
+            </p>
+            <div className="mt-8 grid gap-4">
+              <h3 className="text-xl font-semibold">Why Choose Farmley?</h3>
+              <ul className="grid gap-2">
+                <li className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-primary" />
+                  100% Natural and Fresh
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-primary" />
+                  Ethically Sourced
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-primary" />
+                  Quality Assured
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="relative h-[300px] rounded-lg overflow-hidden">
+            <Image
+              src="/images/about.jpg"
+              alt="Farmley dry fruits"
+              fill
+              className="object-cover"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="bg-secondary py-16">
+        <div className="container">
+          <h2 className="text-center text-3xl font-bold tracking-tight mb-12">
+            What Our Customers Say
+          </h2>
+          <div className="grid gap-8 md:grid-cols-3">
+            <Testimonial
+              quote="Absolutely love the freshness of Farmley's almonds. Highly recommend!"
+              author="Priya S."
+            />
+            <Testimonial
+              quote="The best dry fruits I've ever had. Great taste and quality!"
+              author="Rahul K."
+            />
+            <Testimonial
+              quote="Perfect for gifting! The packaging was elegant and premium."
+              author="Ananya M."
+            />
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

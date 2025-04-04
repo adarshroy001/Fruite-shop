@@ -1,0 +1,66 @@
+import Link from "next/link";
+import { Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { FOOTER_LINKS, SOCIAL_LINKS } from "@/lib/constants";
+
+export default function Footer() {
+  return (
+    <footer className="border-t bg-secondary/50">
+      <div className="container py-12">
+        <div className="grid gap-12 md:grid-cols-4">
+          <div>
+            <h3 className="text-lg font-semibold">Farmley</h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Pure, Nutritious, and Delicious Dry Fruits
+            </p>
+            <div className="mt-6 flex gap-4">
+              {SOCIAL_LINKS.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.url}
+                  className="text-muted-foreground hover:text-primary"
+                >
+                  <link.icon className="h-5 w-5" />
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {FOOTER_LINKS.map((section) => (
+            <div key={section.title}>
+              <h4 className="text-sm font-semibold">{section.title}</h4>
+              <ul className="mt-4 space-y-2">
+                {section.links.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-muted-foreground hover:text-primary"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          <div>
+            <h4 className="text-sm font-semibold">Newsletter</h4>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Subscribe to get updates on new products and offers
+            </p>
+            <div className="mt-4 flex gap-2">
+              <Input placeholder="Your email" className="flex-1" />
+              <Button variant="outline">Subscribe</Button>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-12 border-t pt-8 text-center text-sm text-muted-foreground">
+          © {new Date().getFullYear()} Farmley. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  );
+}
