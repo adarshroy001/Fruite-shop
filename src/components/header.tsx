@@ -11,6 +11,7 @@ import { useContext, useEffect, useState } from "react";
 import { ProductsContext } from "@/context/productContext";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { signOut } from "next-auth/react";
+import Image from "next/image";
 
 export default function Header() {
   const { data: session } = useSession();
@@ -38,7 +39,12 @@ export default function Header() {
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-10">
           <Link href="/" className="text-xl font-bold text-primary">
-            Farmley
+            <Image
+              src={"/images/Asset 26BW.png"}
+              width={100}
+              height={100}
+              alt="logo"
+            />
           </Link>
 
           <nav className="hidden md:flex items-center gap-6">
