@@ -1,31 +1,36 @@
 "use client";
 import Link from "next/link";
-import { ShoppingCart, Search, User } from "lucide-react";
+import { ShoppingCart, Search, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { NAV_LINKS } from "@/lib/constants";
 import { useSession } from "next-auth/react";
 import axios from "axios";
 import { set } from "react-hook-form";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ProductsContext } from "@/context/productContext";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { signOut } from "next-auth/react";
 
 export default function Header() {
   const { data: session } = useSession();
   const [length, setLength] = useState("");
+  const { selectedProducts } = useContext(ProductsContext);
+
+  const user = session?.user;
+
+  const initials = user?.name
+    ?.split(" ")
+    .map((name) => name[0])
+    .join("")
+    .toUpperCase();
 
   useEffect(() => {
-    const cart = async () => {
-      try {
-        if (!session) {
-          return;
-        }
-        const response = await axios.get("/api/cart");
-        setLength(response.data.length);
-      } catch (error) {
-        throw new Error("Failed to get cart");
-      }
-    };
-    cart();
+    if (!session) {
+      return;
+    } else {
+      setLength(selectedProducts.length);
+    }
   }, []);
 
   return (
@@ -59,10 +64,16 @@ export default function Header() {
           </div>
 
           <Button variant="ghost" size="icon">
-            <Link href="/sign-in">
-              {" "}
-              <User className="h-5 w-5" />
-            </Link>
+            {session ? (
+              <Avatar>
+                <AvatarFallback>{initials}</AvatarFallback>
+              </Avatar>
+            ) : (
+              <Link href="/sign-in">
+                {" "}
+                <User className="h-5 w-5" />
+              </Link>
+            )}
           </Button>
 
           <Button variant="ghost" size="icon" className="relative">
@@ -73,6 +84,17 @@ export default function Header() {
               </span>{" "}
             </Link>
           </Button>
+          {session && (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => signOut()}
+              className="hover:bg-destructive/10 hover:text-destructive"
+              title="SignOut"
+            >
+              <LogOut className="h-5 w-5" />
+            </Button>
+          )}
         </div>
       </div>
     </header>

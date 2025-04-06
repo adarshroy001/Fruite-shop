@@ -73,9 +73,23 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const id = searchParams.get("ids");
+  const idArray = id?.split(",");
   try {
-    const product = await prisma.product.findMany();
-    return NextResponse.json({ product: product });
+    if (id) {
+      const product = await prisma.product.findMany({
+        where: {
+          id: {
+            in: idArray,
+          },
+        },
+      });
+      return NextResponse.json({ product: product });
+    } else {
+      const product = await prisma.product.findMany();
+      return NextResponse.json({ product: product });
+    }
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to fetch product" },

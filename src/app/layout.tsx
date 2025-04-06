@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import AuthProvider from "@/context/AuthProvider";
+import { ProductsContextProvider } from "@/context/productContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,14 +21,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <AuthProvider>
-      <html lang="en" suppressHydrationWarning>
-        <body className={inter.className}>
-          <Header />
-          <main className="min-h-[calc(100vh-140px)]">{children}</main>
-          <Footer />
-        </body>
-      </html>
-    </AuthProvider>
+    <ProductsContextProvider>
+      <AuthProvider>
+        <html lang="en" suppressHydrationWarning>
+          <body className={inter.className}>
+            <Header />
+            <main className="min-h-[calc(100vh-140px)]">{children}</main>
+            <Footer />
+          </body>
+        </html>
+      </AuthProvider>
+    </ProductsContextProvider>
   );
 }

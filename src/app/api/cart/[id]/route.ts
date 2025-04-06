@@ -8,9 +8,9 @@ const prisma = new PrismaClient();
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const productId = params.id;
+  const { id: productId } = await params;
   const session = await getServerSession(authOptions);
   try {
     if (!session) {
@@ -19,16 +19,41 @@ export async function POST(
     const user = session.user;
     const userId = user._id;
 
-    const data = await prisma.cart.findFirst({
+    const checkProduct = await prisma.product.findUnique({
       where: {
-        productId: productId,
-        userId: userId,
+        id: productId,
       },
     });
 
+    if (!checkProduct) {
+      return NextResponse.json({ error: "Product not found" }, { status: 404 });
+    }
+
+    const checkCart = await prisma.cart.findFirst({
+      where: {
+        userId: userId,
+        productId: checkProduct.id,
+      },
+    });
+
+    if (!checkCart) {
+      const cart = await prisma.cart.create({
+        data: {
+          quantity: 1,
+          productId: checkProduct.id,
+          user: {
+            connect: {
+              id: userId,
+            },
+          },
+        },
+      });
+      return NextResponse.json({ meassage: "Product added to cart", cart });
+    }
+
     const update = await prisma.cart.update({
       where: {
-        id: data?.id,
+        id: checkCart.id,
       },
       data: {
         quantity: {
@@ -37,20 +62,6 @@ export async function POST(
       },
     });
 
-    if (!data) {
-      const createData = await prisma.cart.create({
-        data: {
-          productId: productId,
-          quantity: 1,
-          user: {
-            connect: {
-              id: userId,
-            },
-          },
-        },
-      });
-      return NextResponse.json(createData);
-    }
     NextResponse.json(update);
   } catch (error) {
     return NextResponse.json(

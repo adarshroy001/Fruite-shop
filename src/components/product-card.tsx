@@ -8,6 +8,7 @@ import { CldImage } from "next-cloudinary";
 
 import { useCallback, useContext } from "react";
 import axios from "axios";
+import { ProductsContext } from "@/context/productContext";
 
 interface Product {
   id: string;
@@ -24,14 +25,11 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  const addToCart = useCallback(async () => {
-    try {
-      const response = await axios.post(`/api/cart/${product.id}`);
-      console.log(response.data);
-    } catch (error) {
-      throw new Error("Failed to add to cart");
-    }
-  }, []);
+  const { setSelectedProducts } = useContext(ProductsContext);
+
+  const addToCart = () => {
+    setSelectedProducts((prev: string[]) => [...prev, product.id]);
+  };
 
   return (
     <div className="group relative overflow-hidden rounded-lg border">
