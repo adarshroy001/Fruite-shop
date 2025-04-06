@@ -124,7 +124,8 @@ exports.Prisma.ProductScalarFieldEnum = {
   price: 'price',
   image: 'image',
   rating: 'rating',
-  category: 'category'
+  category: 'category',
+  maxQuantity: 'maxQuantity'
 };
 
 exports.Prisma.CartScalarFieldEnum = {

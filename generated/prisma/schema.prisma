@@ -31,6 +31,7 @@ model Product {
   image       String
   rating      Float
   category    String
+  maxQuantity Int
 }
 
 model Cart {

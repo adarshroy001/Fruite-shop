@@ -24,6 +24,7 @@ export async function POST(req: NextRequest) {
   const price = formData.get("price") as string;
   const category = formData.get("category") as string;
   const rating = formData.get("rating") as string;
+  const maxQuantity = formData.get("maxQuantity") as string;
 
   if (!file) {
     return NextResponse.json({ message: "File is not there" }, { status: 405 });
@@ -53,6 +54,7 @@ export async function POST(req: NextRequest) {
         image: result.public_id,
         category,
         rating: parseFloat(rating),
+        maxQuantity: Number(maxQuantity),
       },
     });
     return NextResponse.json(
