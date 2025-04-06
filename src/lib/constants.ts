@@ -5,7 +5,7 @@ interface NavLink {
   href: string;
 }
 
-interface Product {
+export interface Product {
   id: string;
   name: string;
   description: string;
@@ -33,6 +33,7 @@ export const NAV_LINKS: NavLink[] = [
   { label: "Contact Us", href: "/contact" },
 ];
 
+/*
 export const Products: Product[] = [
   {
     id: "1",
@@ -56,6 +57,8 @@ export const Products: Product[] = [
   },
   // Add more products...
 ];
+
+*/
 
 export const FOOTER_LINKS: FooterSection[] = [
   {

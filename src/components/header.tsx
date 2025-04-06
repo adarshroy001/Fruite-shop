@@ -1,10 +1,33 @@
+"use client";
 import Link from "next/link";
 import { ShoppingCart, Search, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { NAV_LINKS } from "@/lib/constants";
+import { useSession } from "next-auth/react";
+import axios from "axios";
+import { set } from "react-hook-form";
+import { useEffect, useState } from "react";
 
 export default function Header() {
+  const { data: session } = useSession();
+  const [length, setLength] = useState("");
+
+  useEffect(() => {
+    const cart = async () => {
+      try {
+        if (!session) {
+          return;
+        }
+        const response = await axios.get("/api/cart");
+        setLength(response.data.length);
+      } catch (error) {
+        throw new Error("Failed to get cart");
+      }
+    };
+    cart();
+  }, []);
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
@@ -43,10 +66,12 @@ export default function Header() {
           </Button>
 
           <Button variant="ghost" size="icon" className="relative">
-            <ShoppingCart className="h-5 w-5" />
-            <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground">
-              0
-            </span>
+            <Link href="/cart">
+              <ShoppingCart className="h-5 w-5" />
+              <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground">
+                {session ? length : 0}
+              </span>{" "}
+            </Link>
           </Button>
         </div>
       </div>

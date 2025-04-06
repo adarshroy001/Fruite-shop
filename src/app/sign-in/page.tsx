@@ -54,7 +54,7 @@ export default function SignIn() {
           <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
             Do Sign-in
           </h1>
-          <p className="mb-4">Sign in </p>
+          <p className="mb-4">Sign in</p>
         </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -63,7 +63,7 @@ export default function SignIn() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Username</FormLabel>
+                  <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input placeholder="Email" {...field} />
                   </FormControl>
@@ -77,7 +77,7 @@ export default function SignIn() {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Username</FormLabel>
+                  <FormLabel>Password</FormLabel>
                   <FormControl>
                     <Input placeholder="Password" {...field} />
                   </FormControl>
@@ -90,7 +90,7 @@ export default function SignIn() {
               <Button type="submit">Submit</Button>
 
               <Link href="/inputemail">Forget Password</Link>
-              <Link href="/sign-up">Sign up</Link>
+              <Link href="/sign-up">Sign Up</Link>
             </div>
           </form>
         </Form>

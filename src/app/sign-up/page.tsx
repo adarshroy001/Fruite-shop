@@ -42,7 +42,7 @@ export default function Register() {
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
     try {
-      const response = await axios.post("/api/register", data);
+      const response = await axios.post("/api/sign-up", data);
       console.log(response.data);
       router.replace("/sign-in");
     } catch (error) {
@@ -80,7 +80,7 @@ export default function Register() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>Username</FormLabel>
                   <FormControl>
                     <Input placeholder="Email" {...field} />
                   </FormControl>
