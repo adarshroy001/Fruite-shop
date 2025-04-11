@@ -71,7 +71,7 @@ export default function Header() {
               </Link>
             ))}
 
-            {user && (
+            {user?.admin === true && (
               <Link
                 href="/upload-product"
                 className="text-sm font-medium transition-colors hover:text-primary"
