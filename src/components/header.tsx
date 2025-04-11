@@ -44,6 +44,7 @@ export default function Header() {
       return;
     } else {
       setLength(selectedProducts.length);
+      console.log(length);
     }
   }, []);
 
@@ -137,7 +138,7 @@ export default function Header() {
             <Link href="/cart">
               <ShoppingCart className="h-5 w-5" />
               <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground">
-                {session ? length : 0}
+                {selectedProducts?.length || 0}
               </span>{" "}
             </Link>
           </Button>
