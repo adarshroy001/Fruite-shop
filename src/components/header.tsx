@@ -1,6 +1,13 @@
 "use client";
 import Link from "next/link";
-import { ShoppingCart, Search, User, LogOut } from "lucide-react";
+import {
+  ShoppingCart,
+  Search,
+  User,
+  LogOut,
+  Package,
+  Settings,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { NAV_LINKS } from "@/lib/constants";
@@ -12,6 +19,12 @@ import { ProductsContext } from "@/context/productContext";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function Header() {
   const { data: session } = useSession();
@@ -57,6 +70,15 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
+
+            {user && (
+              <Link
+                href="/upload-product"
+                className="text-sm font-medium transition-colors hover:text-primary"
+              >
+                Add Product
+              </Link>
+            )}
           </nav>
         </div>
 
@@ -69,18 +91,47 @@ export default function Header() {
             />
           </div>
 
-          <Button variant="ghost" size="icon">
-            {session ? (
-              <Avatar>
-                <AvatarFallback>{initials}</AvatarFallback>
-              </Avatar>
-            ) : (
-              <Link href="/sign-in">
-                {" "}
-                <User className="h-5 w-5" />
-              </Link>
-            )}
-          </Button>
+          {user ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Avatar>
+                    <AvatarFallback>{initials}</AvatarFallback>
+                  </Avatar>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem className="flex items-center gap-2">
+                  <User className="h-4 w-4" />
+                  <span>Profile</span>
+                </DropdownMenuItem>
+                {user.admin === true && (
+                  <>
+                    <DropdownMenuItem asChild>
+                      <Link
+                        href="/upload-product"
+                        className="flex items-center gap-2"
+                      >
+                        <Settings className="h-4 w-4" />
+                        <span>Add Product</span>
+                      </Link>
+                    </DropdownMenuItem>
+                  </>
+                )}
+                <DropdownMenuItem
+                  onClick={() => signOut()}
+                  className="flex items-center gap-2 text-destructive"
+                >
+                  <LogOut className="h-4 w-4" />
+                  <span>Logout</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <Button asChild variant="outline">
+              <Link href="/sign-in">Login</Link>
+            </Button>
+          )}
 
           <Button variant="ghost" size="icon" className="relative">
             <Link href="/cart">
@@ -90,17 +141,6 @@ export default function Header() {
               </span>{" "}
             </Link>
           </Button>
-          {session && (
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => signOut()}
-              className="hover:bg-destructive/10 hover:text-destructive"
-              title="SignOut"
-            >
-              <LogOut className="h-5 w-5" />
-            </Button>
-          )}
         </div>
       </div>
     </header>
