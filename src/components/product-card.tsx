@@ -9,6 +9,7 @@ import { CldImage } from "next-cloudinary";
 import { useCallback, useContext } from "react";
 import axios from "axios";
 import { ProductsContext } from "@/context/productContext";
+import { useSession } from "next-auth/react";
 
 export interface Product {
   id: string;
@@ -27,7 +28,10 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const { setSelectedProducts } = useContext(ProductsContext);
 
+  const { data: session } = useSession();
+
   const addToCart = () => {
+    if (!session) return;
     setSelectedProducts((prev: string[]) => [...prev, product.id]);
   };
 
