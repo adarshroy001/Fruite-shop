@@ -41,13 +41,14 @@ export const authOptions: NextAuthOptions = {
         token._id = user._id?.toString();
         token.name = user.name;
         token.email = user.email;
+        token.admin = user.admin;
       }
       return token;
     },
     async session({ session, token }) {
       if (token) {
         session.user._id = token._id?.toString();
-
+        session.user.admin = token.admin;
         session.user.name = token.name;
         session.user.email = token.email;
       }

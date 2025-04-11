@@ -17,12 +17,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.5.0
- * Query Engine version: 173f8d54f8d52e692c7e27e72a88314ec7aeff60
+ * Prisma Client JS version: 6.6.0
+ * Query Engine version: f676762280b54cd07c770017ed3711ddde35f37a
  */
 Prisma.prismaVersion = {
-  client: "6.5.0",
-  engine: "173f8d54f8d52e692c7e27e72a88314ec7aeff60"
+  client: "6.6.0",
+  engine: "f676762280b54cd07c770017ed3711ddde35f37a"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -114,7 +114,8 @@ exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
   password: 'password',
-  name: 'name'
+  name: 'name',
+  admin: 'admin'
 };
 
 exports.Prisma.ProductScalarFieldEnum = {
@@ -125,14 +126,18 @@ exports.Prisma.ProductScalarFieldEnum = {
   image: 'image',
   rating: 'rating',
   category: 'category',
-  maxQuantity: 'maxQuantity'
+  maxQuantity: 'maxQuantity',
+  orderId: 'orderId'
 };
 
-exports.Prisma.CartScalarFieldEnum = {
+exports.Prisma.OrderScalarFieldEnum = {
   id: 'id',
-  productId: 'productId',
-  quantity: 'quantity',
-  userId: 'userId'
+  userId: 'userId',
+  status: 'status',
+  createdAt: 'createdAt',
+  address: 'address',
+  totalAmount: 'totalAmount',
+  phoneNumber: 'phoneNumber'
 };
 
 exports.Prisma.SortOrder = {
@@ -149,7 +154,7 @@ exports.Prisma.QueryMode = {
 exports.Prisma.ModelName = {
   User: 'User',
   Product: 'Product',
-  Cart: 'Cart'
+  Order: 'Order'
 };
 
 /**
@@ -169,7 +174,7 @@ class PrismaClient {
         } else {
           message = 'PrismaClient is unable to run in this browser environment, or has been bundled for the browser (running in `' + runtime.prettyName + '`).'
         }
-        
+
         message += `
 If this is unexpected, please open an issue: https://pris.ly/prisma-prisma-bug-report`
 

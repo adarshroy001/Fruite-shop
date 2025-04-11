@@ -10,7 +10,7 @@ import { useCallback, useContext } from "react";
 import axios from "axios";
 import { ProductsContext } from "@/context/productContext";
 
-interface Product {
+export interface Product {
   id: string;
   title: string;
   description: string;

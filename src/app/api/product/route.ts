@@ -16,6 +16,10 @@ interface CloudinaryUploadResult {
   [key: string]: any;
 }
 
+interface Product {
+  id: string;
+}
+
 export async function POST(req: NextRequest) {
   const formData = await req.formData();
   const file = (formData.get("image") as File) || null;
@@ -23,7 +27,7 @@ export async function POST(req: NextRequest) {
   const description = formData.get("description") as string;
   const price = formData.get("price") as string;
   const category = formData.get("category") as string;
-  const rating = formData.get("rating") as string;
+
   const maxQuantity = formData.get("maxQuantity") as string;
 
   if (!file) {
@@ -53,7 +57,6 @@ export async function POST(req: NextRequest) {
         price: Number(price),
         image: result.public_id,
         category,
-        rating: parseFloat(rating),
         maxQuantity: Number(maxQuantity),
       },
     });
@@ -76,25 +79,40 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
-  const id = searchParams.get("ids");
-  const idArray = id?.split(",");
+  const idParam = searchParams.get("ids");
+
   try {
-    if (id) {
-      const product = await prisma.product.findMany({
+    let products: Product[];
+
+    if (idParam && idParam.trim() !== "") {
+      const idArray = idParam.split(",").filter((id) => id.trim() !== "");
+
+      if (idArray.length === 0) {
+        return NextResponse.json(
+          { error: "No valid IDs provided" },
+          { status: 400 }
+        );
+      }
+
+      products = await prisma.product.findMany({
         where: {
           id: {
             in: idArray,
           },
         },
       });
-      return NextResponse.json({ product: product });
     } else {
-      const product = await prisma.product.findMany();
-      return NextResponse.json({ product: product });
+      products = await prisma.product.findMany();
     }
+
+    return NextResponse.json({ products });
   } catch (error) {
+    console.error("Error fetching products:", error);
     return NextResponse.json(
-      { error: "Failed to fetch product" },
+      {
+        error: "Failed to fetch products",
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
       { status: 500 }
     );
   }

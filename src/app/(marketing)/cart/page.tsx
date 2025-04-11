@@ -24,26 +24,6 @@ import { CldImage } from "next-cloudinary";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 
-// Mock cart data - replace with your actual data source
-const cartItems = [
-  {
-    id: "1",
-    name: "Plain Cashew",
-    price: 499,
-    quantity: 2,
-    image: "/images/products/cashew-plain.jpg",
-    maxQuantity: 10,
-  },
-  {
-    id: "2",
-    name: "Salted Cashew",
-    price: 549,
-    quantity: 1,
-    image: "/images/products/cashew-salted.jpg",
-    maxQuantity: 10,
-  },
-];
-
 interface Product {
   id: string;
   title: string;
@@ -57,8 +37,12 @@ interface Product {
 
 export default function CartPage() {
   const [productinfo, setProductinfo] = useState<Product[]>([]);
+  let subtotal = 0;
+  let total = 0;
+  let shippingFee = 0;
 
   const { selectedProducts, setSelectedProducts } = useContext(ProductsContext);
+
   useEffect(() => {
     const unique_id = [...new Set(selectedProducts)];
     try {
@@ -66,29 +50,35 @@ export default function CartPage() {
         const response = await axios.get(
           "/api/product?ids=" + unique_id.join(",")
         );
-        setProductinfo(response.data.product);
+        setProductinfo(response.data.products);
+        console.log(selectedProducts.length);
       };
       fetchProduct();
     } catch (error) {
       throw new Error("Failed to fetch products");
     }
-  }, []);
+  }, [selectedProducts]);
 
-  let subtotal = 0;
+  if (productinfo?.length) {
+    for (let i = 0; i < productinfo.length; i++) {
+      subtotal +=
+        productinfo[i].price *
+        selectedProducts.filter((item: any) => item === productinfo[i].id)
+          .length;
+    }
 
-  for (let i = 0; i < productinfo.length; i++) {
-    subtotal +=
-      productinfo[i].price *
-      selectedProducts.filter((item: any) => item === productinfo[i].id).length;
+    let shippingFee = subtotal > 1000 ? 0 : 50;
+    total = subtotal + shippingFee;
   }
-
-  let shippingFee = subtotal > 1000 ? 0 : 50;
-  let total = subtotal + shippingFee;
 
   function lessOf(id: string) {
-    setSelectedProducts((prev: any) => prev.filter((item: any) => item !== id));
+    const pos = selectedProducts.indexOf(id);
+    if (pos !== -1) {
+      setSelectedProducts((prev: any) => {
+        return prev.filter((value: any, index: any) => index !== pos);
+      });
+    }
   }
-
   return (
     <div className="container py-12">
       <h1 className="text-3xl font-bold tracking-tight">Your Shopping Cart</h1>
@@ -97,7 +87,10 @@ export default function CartPage() {
         <div className="md:col-span-8">
           <Card>
             <CardHeader>
-              <CardTitle>Items ({cartItems.length})</CardTitle>
+              <CardTitle>Items ({selectedProducts.length})</CardTitle>
+              {!selectedProducts.length && (
+                <div>no products in your shopping cart</div>
+              )}
             </CardHeader>
             <CardContent>
               <Table>
@@ -111,61 +104,68 @@ export default function CartPage() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {productinfo.map((item) => (
-                    <TableRow key={item.id}>
-                      <TableCell>
-                        <div className="flex items-center gap-4">
-                          <div className="relative h-16 w-16 overflow-hidden rounded-md border">
-                            <CldImage
-                              src={item.image}
-                              alt={item.title}
-                              fill
-                              className="h-full w-full object-cover"
+                  {productinfo &&
+                    productinfo.map((item) => {
+                      const amount = selectedProducts.filter(
+                        (id: any) => id === item.id
+                      ).length;
+                      if (amount === 0) return;
+                      return (
+                        <TableRow key={item.id}>
+                          <TableCell>
+                            <div className="flex items-center gap-4">
+                              <div className="relative h-16 w-16 overflow-hidden rounded-md border">
+                                <CldImage
+                                  src={item.image}
+                                  alt={item.title}
+                                  fill
+                                  className="h-full w-full object-cover"
+                                />
+                              </div>
+                              <div>
+                                <p className="font-medium">{item.title}</p>
+                                <p className="text-sm text-muted-foreground">
+                                  ₹{item.price}
+                                </p>
+                              </div>
+                            </div>
+                          </TableCell>
+                          <TableCell className="text-right">
+                            <Input
+                              type="number"
+                              min="1"
+                              max={item.maxQuantity}
+                              defaultValue={
+                                selectedProducts.filter(
+                                  (id: string) => id === item.id
+                                ).length
+                              }
+                              className="w-20"
+                              readOnly
                             />
-                          </div>
-                          <div>
-                            <p className="font-medium">{item.title}</p>
-                            <p className="text-sm text-muted-foreground">
-                              ₹{item.price}
-                            </p>
-                          </div>
-                        </div>
-                      </TableCell>
-                      <TableCell className="text-right">
-                        <Input
-                          type="number"
-                          min="1"
-                          max={item.maxQuantity}
-                          defaultValue={
-                            selectedProducts.filter(
-                              (id: string) => id === item.id
-                            ).length
-                          }
-                          className="w-20"
-                          readOnly
-                        />
-                      </TableCell>
-                      <TableCell className="text-right">
-                        ₹{item.price}
-                      </TableCell>
-                      <TableCell className="text-right">
-                        ₹
-                        {item.price *
-                          selectedProducts.filter(
-                            (id: string) => id === item.id
-                          ).length}
-                      </TableCell>
-                      <TableCell>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          onClick={() => lessOf(item.id)}
-                        >
-                          <Trash2 className="h-4 w-4 text-destructive" />
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                          </TableCell>
+                          <TableCell className="text-right">
+                            ₹{item.price}
+                          </TableCell>
+                          <TableCell className="text-right">
+                            ₹
+                            {item.price *
+                              selectedProducts.filter(
+                                (id: string) => id === item.id
+                              ).length}
+                          </TableCell>
+                          <TableCell>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              onClick={() => lessOf(item.id)}
+                            >
+                              <Trash2 className="h-4 w-4 text-destructive" />
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
                 </TableBody>
               </Table>
             </CardContent>
@@ -173,7 +173,9 @@ export default function CartPage() {
               <Button variant="outline" asChild>
                 <Link href="/products">Continue Shopping</Link>
               </Button>
-              <Button variant="outline">Update Cart</Button>
+              <Button variant="outline">
+                <Link href={"/products"}> Update Cart</Link>
+              </Button>
             </CardFooter>
           </Card>
         </div>

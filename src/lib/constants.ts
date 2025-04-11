@@ -7,7 +7,7 @@ interface NavLink {
 
 export interface Product {
   id: string;
-  name: string;
+  title: string;
   description: string;
   price: number;
   rating: number;
@@ -33,11 +33,10 @@ export const NAV_LINKS: NavLink[] = [
   { label: "Contact Us", href: "/contact" },
 ];
 
-/*
 export const Products: Product[] = [
   {
     id: "1",
-    name: "Plain Cashew",
+    title: "Plain Cashew",
     description:
       "Handpicked, premium-quality cashews with a natural creamy taste.",
     price: 499,
@@ -47,7 +46,7 @@ export const Products: Product[] = [
   },
   {
     id: "2",
-    name: "Salted Cashew",
+    title: "Salted Cashew",
     description:
       "Deliciously roasted cashews with a light touch of salt for the perfect snack.",
     price: 549,
@@ -57,8 +56,6 @@ export const Products: Product[] = [
   },
   // Add more products...
 ];
-
-*/
 
 export const FOOTER_LINKS: FooterSection[] = [
   {
