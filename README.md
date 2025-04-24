@@ -31,9 +31,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## API Key Or Environment Variables
 
-DATABASE_URL="mongodb+srv://junedgreat89:RqusNldLpghV0LXG@cluster0.scjpxyd.mongodb.net/ProductShop?retryWrites=true&w=majority&appName=Cluster0"
-NEXTAUTH_SECRET="Juned123"
+DATABASE_URL=
+NEXTAUTH_SECRET=
 
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="dgbpjykdd"
-CLOUDINARY_API_KEY="926893241951216"
-CLOUDINARY_API_SECRET="c2KQ-TUcj62IzBJl2EURdfD2ywo"
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
