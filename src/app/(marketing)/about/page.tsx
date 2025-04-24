@@ -4,7 +4,7 @@ import { Leaf, ShieldCheck, Sprout, Truck } from "lucide-react";
 
 export default function AboutPage() {
   return (
-    <div className="container py-12">
+    <div className="container py-12 ml-10">
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold tracking-tight">Our Story</h1>
         <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
@@ -12,12 +12,12 @@ export default function AboutPage() {
         </p>
       </div>
 
-      <div className="grid gap-12">
+      <div className="grid gap-12 ">
         {/* Our Story Section */}
         <section className="grid md:grid-cols-2 gap-8 items-center">
           <div>
             <h2 className="text-3xl font-bold tracking-tight mb-4">
-              Welcome to Farmley
+              Welcome to Farmlyf
             </h2>
             <p className="text-muted-foreground mb-4">
               Where quality meets tradition. Our journey began with a simple
@@ -37,7 +37,7 @@ export default function AboutPage() {
           </div>
           <div className="relative h-80 rounded-lg overflow-hidden">
             <Image
-              src="/images/about-story.jpg"
+              src="/images/About.jpeg"
               alt="Farmley story"
               fill
               className="object-cover"
@@ -87,13 +87,28 @@ export default function AboutPage() {
                 </p>
               </CardContent>
             </Card>
+            <Card>
+              <CardHeader>
+                <Image
+                  src={"/images/fssai.png"}
+                  alt="fssai"
+                  height={100}
+                  width={100}
+                  className="bg-white"
+                />
+                <CardTitle>FSSAI Approved</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground"></p>
+              </CardContent>
+            </Card>
           </div>
         </section>
 
         {/* Why Choose Us */}
         <section>
           <h2 className="text-3xl font-bold tracking-tight mb-8 text-center">
-            Why Choose Farmley
+            Why Choose Farmlyf
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[

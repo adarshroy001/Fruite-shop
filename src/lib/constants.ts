@@ -71,8 +71,7 @@ export const FOOTER_LINKS: FooterSection[] = [
     title: "Customer Support",
     links: [
       { label: "FAQs", href: "/faq" },
-      { label: "Return Policy", href: "/return-policy" },
-      { label: "Shipping Policy", href: "/shipping-policy" },
+
       { label: "Contact Support", href: "/contact" },
     ],
   },

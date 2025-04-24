@@ -41,7 +41,8 @@ export default function ProductCard({ product }: ProductCardProps) {
         <CldImage
           src={product.image}
           alt={product.title}
-          fill
+          width={600}
+          height={600}
           className="object-cover transition-transform group-hover:scale-105"
         />
       </div>
@@ -57,9 +58,6 @@ export default function ProductCard({ product }: ProductCardProps) {
             <span className="text-sm">{product.rating}</span>
           </div>
         </div>
-        <Button size="sm" className="mt-4 w-full" onClick={addToCart}>
-          Add to Cart
-        </Button>
       </div>
     </div>
   );

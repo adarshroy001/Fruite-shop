@@ -7,10 +7,10 @@ import { FOOTER_LINKS, SOCIAL_LINKS } from "@/lib/constants";
 export default function Footer() {
   return (
     <footer className="border-t bg-secondary/50">
-      <div className="container py-12">
+      <div className="container py-12 ml-5">
         <div className="grid gap-12 md:grid-cols-4">
           <div>
-            <h3 className="text-lg font-semibold">Farmley</h3>
+            <h3 className="text-lg font-semibold">Farmlyf</h3>
             <p className="mt-2 text-sm text-muted-foreground">
               Pure, Nutritious, and Delicious Dry Fruits
             </p>
@@ -58,7 +58,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 border-t pt-8 text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Farmley. All rights reserved.
+          © {new Date().getFullYear()} Farmlyf. All rights reserved.
         </div>
       </div>
     </footer>
