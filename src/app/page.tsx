@@ -61,8 +61,9 @@ export default function Home() {
             <Image
               src="/images/about.jpg"
               alt="Farmley dry fruits"
-              fill
-              className="object-cover"
+              height={300}
+              width={300}
+              className="object-cover align-center"
             />
           </div>
         </div>
