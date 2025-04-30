@@ -37,13 +37,13 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <div className="group relative overflow-hidden rounded-lg border">
-      <div className="relative aspect-square overflow-hidden bg-gray-100">
+      <div className="relative aspect-square overflow-hidden bg-gray-100 p-15">
         <CldImage
           src={product.image}
           alt={product.title}
           width={600}
           height={600}
-          className="object-cover transition-transform group-hover:scale-105"
+          className="object-contain transition-transform group-hover:scale-108"
         />
       </div>
       <div className="p-4">
@@ -51,13 +51,6 @@ export default function ProductCard({ product }: ProductCardProps) {
         <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
           {product.description}
         </p>
-        <div className="mt-4 flex items-center justify-between">
-          <span className="font-bold">₹{product.price}</span>
-          <div className="flex items-center gap-1">
-            <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-            <span className="text-sm">{product.rating}</span>
-          </div>
-        </div>
       </div>
     </div>
   );

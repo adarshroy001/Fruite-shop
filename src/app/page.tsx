@@ -59,7 +59,7 @@ export default function Home() {
           </div>
           <div className="relative h-[300px] rounded-lg overflow-hidden">
             <Image
-              src="/images/about.jpg"
+              src="/images/about.webp"
               alt="Farmley dry fruits"
               height={300}
               width={300}

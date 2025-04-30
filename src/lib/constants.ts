@@ -41,7 +41,7 @@ export const Products: Product[] = [
       "Handpicked, premium-quality cashews with a natural creamy taste.",
     price: 499,
     rating: 4.8,
-    image: "/images/products/cashew-plain.jpg",
+    image: "farmlyf/fgo3wqhfbhomi7objlii",
     category: "nuts",
   },
   {
@@ -51,7 +51,17 @@ export const Products: Product[] = [
       "Deliciously roasted cashews with a light touch of salt for the perfect snack.",
     price: 549,
     rating: 4.6,
-    image: "/images/products/cashew-salted.jpg",
+    image: "farmlyf/we8lymvzn7vkgle2pail",
+    category: "nuts",
+  },
+  {
+    id: "3",
+    title: "Spicy Masala Cashew",
+    description:
+      "Crunchy cashews coated with a bold blend of aromatic spices for a flavorful, zesty snack.",
+    price: 549,
+    rating: 4.6,
+    image: "farmlyf/xy8tende8zknja5quia4",
     category: "nuts",
   },
   // Add more products...

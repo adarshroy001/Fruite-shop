@@ -139,7 +139,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "D:\\assignment\\generated\\prisma",
+      "value": "/home/vikash/Desktop/devlaunch/Fruite-shop/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -148,17 +148,16 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "debian-openssl-3.0.x",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "D:\\assignment\\prisma\\schema.prisma",
+    "sourceFilePath": "/home/vikash/Desktop/devlaunch/Fruite-shop/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
-    "schemaEnvPath": "../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "../../prisma",
   "clientVersion": "6.6.0",
@@ -167,11 +166,12 @@ const config = {
     "db"
   ],
   "activeProvider": "mongodb",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "mongodb+srv://junedgreat89:RqusNldLpghV0LXG@cluster0.scjpxyd.mongodb.net/ProductShop?retryWrites=true&w=majority&appName=Cluster0"
+        "value": null
       }
     }
   },

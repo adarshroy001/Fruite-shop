@@ -70,8 +70,8 @@ export default function AboutPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  Empowering farmers with fair wages and better opportunities
-                  through direct partnerships.
+                Using recyclable and biodegradable materials.
+                Choosing Farmlyf means supporting a greener, healthier future.
                 </p>
               </CardContent>
             </Card>

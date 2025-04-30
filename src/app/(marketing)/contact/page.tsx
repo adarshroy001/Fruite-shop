@@ -65,9 +65,9 @@ export default function ContactPage() {
                 <div>
                   <h3 className="font-medium">Address</h3>
                   <p className="text-muted-foreground">
-                    123 Farmlyf Lane, Dry Fruit District
+                  HIG-461,K-5 Subudhipur, Kalinga Naga
                     <br />
-                    Mumbai, Maharashtra 400001
+                    Bhubaneswar, Khorda-751019
                   </p>
                 </div>
               </div>
@@ -77,7 +77,7 @@ export default function ContactPage() {
                   <h3 className="font-medium">Phone</h3>
                   <p className="text-muted-foreground">
                     <Link href="tel:+911234567890" className="hover:underline">
-                      +91 12345 67890
+                    1800 890 8177
                     </Link>
                   </p>
                   <p className="text-sm text-muted-foreground mt-1">
@@ -94,7 +94,7 @@ export default function ContactPage() {
                       href="mailto:support@farmley.com"
                       className="hover:underline"
                     >
-                      support@farmlyf.com
+                      care@farmlyf.in
                     </Link>
                   </p>
                 </div>
