@@ -65,9 +65,9 @@ export default function ContactPage() {
                 <div>
                   <h3 className="font-medium">Address</h3>
                   <p className="text-muted-foreground">
-                  HIG-461,K-5 Subudhipur, Kalinga Naga
+                    HIG-461,K-5 Subudhipur, Kalinga Nagar
                     <br />
-                    Bhubaneswar, Khorda-751019
+                    Bhubaneswar, Khorda Nagar, orissa-751019
                   </p>
                 </div>
               </div>
@@ -77,7 +77,7 @@ export default function ContactPage() {
                   <h3 className="font-medium">Phone</h3>
                   <p className="text-muted-foreground">
                     <Link href="tel:+911234567890" className="hover:underline">
-                    1800 890 8177
+                      1800 890 8177
                     </Link>
                   </p>
                   <p className="text-sm text-muted-foreground mt-1">

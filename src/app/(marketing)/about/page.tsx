@@ -63,18 +63,17 @@ export default function AboutPage() {
                 </p>
               </CardContent>
             </Card>
-            <Card>
+            {/* <Card>
               <CardHeader>
                 <ShieldCheck className="h-10 w-10 text-blue-500" />
-                <CardTitle>Fair Trade Partnerships</CardTitle>
+                <CardTitle> Ethical Sourcing</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                Using recyclable and biodegradable materials.
-                Choosing Farmlyf means supporting a greener, healthier future.
+                Partnering with small-scale farmers and cooperatives across India to ensure fair wages, empowerment, and consistent income.
                 </p>
               </CardContent>
-            </Card>
+            </Card> */}
             <Card>
               <CardHeader>
                 <Truck className="h-10 w-10 text-orange-500" />
@@ -90,7 +89,7 @@ export default function AboutPage() {
             <Card>
               <CardHeader>
                 <Image
-                  src={"/images/fssai.png"}
+                  src={"/images/fssai.webp"}
                   alt="fssai"
                   height={100}
                   width={100}

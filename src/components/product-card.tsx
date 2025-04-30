@@ -43,7 +43,10 @@ export default function ProductCard({ product }: ProductCardProps) {
           alt={product.title}
           width={600}
           height={600}
-          className="object-contain transition-transform group-hover:scale-108"
+          className="object-contain transition-transform group-hover:scale-108 lazyload"
+          loading="lazy"
+          placeholder="blur"
+          blurDataURL={'/images/Asset 26BW.png'}
         />
       </div>
       <div className="p-4">
