@@ -23,9 +23,6 @@ export default function Home() {
           <p className="text-xl font-semibold italic">
             &quot;Pure, Nutritious, and Delicious Dry Fruits.&quot;
           </p>
-          <Button asChild size="lg">
-            <Link href="/products">Shop Now</Link>
-          </Button>
         </div>
       </section>
 

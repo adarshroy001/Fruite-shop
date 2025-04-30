@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
-import { Leaf, ShieldCheck, Sprout, Truck } from "lucide-react";
+import { ArrowLeftRight, Leaf, ShieldCheck, Sprout, Truck } from "lucide-react";
 
 export default function AboutPage() {
   return (
@@ -63,17 +63,19 @@ export default function AboutPage() {
                 </p>
               </CardContent>
             </Card>
-            {/* <Card>
+            <Card>
               <CardHeader>
                 <ShieldCheck className="h-10 w-10 text-blue-500" />
                 <CardTitle> Ethical Sourcing</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                Partnering with small-scale farmers and cooperatives across India to ensure fair wages, empowerment, and consistent income.
+                  Partnering with small-scale farmers and cooperatives across
+                  India to ensure fair wages, empowerment, and consistent
+                  income.
                 </p>
               </CardContent>
-            </Card> */}
+            </Card>
             <Card>
               <CardHeader>
                 <Truck className="h-10 w-10 text-orange-500" />
@@ -83,6 +85,18 @@ export default function AboutPage() {
                 <p className="text-muted-foreground">
                   Using recyclable and biodegradable materials to protect both
                   your food and our planet.
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <ArrowLeftRight className="h-10 w-10 text-blue-500" />
+                <CardTitle>Minimal Waste Operations</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">
+                  From farm to packaging, we optimize processes to reduce food
+                  and material waste at every step.{" "}
                 </p>
               </CardContent>
             </Card>

@@ -28,14 +28,6 @@ export default function Header() {
         </div>
 
         <div className="flex items-end gap-4">
-          <div className="relative hidden md:block">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Search products..."
-              className="pl-10 w-[200px] lg:w-[300px]"
-            />
-          </div>
-
           <Button variant="ghost" onClick={toggleMenu} aria-label="Toggle menu">
             {menuOpen ? (
               <X className="h-6 w-6" />
