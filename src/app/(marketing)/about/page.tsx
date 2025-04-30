@@ -63,18 +63,7 @@ export default function AboutPage() {
                 </p>
               </CardContent>
             </Card>
-            <Card>
-              <CardHeader>
-                <ShieldCheck className="h-10 w-10 text-blue-500" />
-                <CardTitle>Fair Trade Partnerships</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                Using recyclable and biodegradable materials.
-                Choosing Farmlyf means supporting a greener, healthier future.
-                </p>
-              </CardContent>
-            </Card>
+
             <Card>
               <CardHeader>
                 <Truck className="h-10 w-10 text-orange-500" />
