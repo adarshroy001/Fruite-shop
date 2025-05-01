@@ -24,7 +24,7 @@ export default function RootLayout({
     <ProductsContextProvider>
       <AuthProvider>
         <html lang="en" suppressHydrationWarning>
-          <body className={inter.className}>
+          <body className={`overflow-x-hidden max-w-screen`}>
             <Header />
             <main className="min-h-[calc(100vh-140px)]">{children}</main>
             <Footer />

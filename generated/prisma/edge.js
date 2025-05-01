@@ -139,7 +139,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/vikash/Desktop/devlaunch/Fruite-shop/generated/prisma",
+      "value": "E:\\Fruite-shop\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -148,12 +148,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "debian-openssl-3.0.x",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/vikash/Desktop/devlaunch/Fruite-shop/prisma/schema.prisma",
+    "sourceFilePath": "E:\\Fruite-shop\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {

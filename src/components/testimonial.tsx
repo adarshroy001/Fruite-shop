@@ -15,7 +15,7 @@ export function Testimonial({ quote, author }: TestimonialProps) {
     .toUpperCase();
 
   return (
-    <Card className="h-full">
+    <Card className="h-full mx-auto px-2 md:px-8 lg:px-16">
       <CardContent className="p-6">
         <div className="flex flex-col h-full gap-4">
           <div className="flex items-center gap-4">

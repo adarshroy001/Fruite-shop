@@ -47,7 +47,7 @@ export function HeroCarousel() {
   }, [isTransitioning]);
 
   return (
-    <div className="relative w-full h-[500px] overflow-hidden">
+    <div className="relative  h-[500px] w-full max-w-screen overflow-x-hidden ">
       <div
         className="absolute inset-0 flex"
         style={{

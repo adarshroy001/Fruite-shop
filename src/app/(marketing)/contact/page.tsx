@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function ContactPage() {
   return (
-    <div className="container py-12">
+    <div className="container py-12 mx-auto px-2 md:px-8 lg:px-16 w-full max-w-screen overflow-x-hidden">
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold tracking-tight">Get in Touch</h1>
         <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">

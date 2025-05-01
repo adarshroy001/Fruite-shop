@@ -14,8 +14,8 @@ export default function Header() {
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
+    <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 mx-auto w-full max-w-screen ">
+      <div className="container flex h-16 items-center justify-between ">
         <div className="flex items-center ml-8 gap-10">
           <Link href="/" className="text-xl font-bold text-primary">
             <Image
