@@ -11,7 +11,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative h-[500px] w-full">
         <HeroCarousel />
-        <div className="container absolute inset-0 flex h-full flex-col items-start justify-center gap-4 text-white ml-5 z-10">
+        <div className="container absolute inset-0 flex h-full flex-col items-start justify-center gap-4 text-white z-10 w-full max-w-screen overflow-x-hidden mx-auto px-2 md:px-8 lg:px-16">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
             Welcome to Farmlyf
           </h1>
@@ -27,8 +27,8 @@ export default function Home() {
       </section>
 
       {/* About section */}
-      <section id="about" className="py-20 bg-gray-50 dark:bg-gray-900">
-        <div className="container mx-auto grid md:grid-cols-2 gap-16 items-center px-4">
+      <section id="about" className="py-20 bg-gray-50 dark:bg-gray-900 w-full max-w-screen overflow-x-hidden mx-auto px-2 md:px-8 lg:px-16">
+        <div className="container mx-auto grid md:grid-cols-2 gap-16 items-center">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">About Farmlyf</h2>
             <p className="mb-8 text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -65,7 +65,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="bg-gradient-to-b from-secondary/60 to-white py-20">
+      <section className="bg-gradient-to-b from-secondary/60 to-white py-20 w-full max-w-screen overflow-x-hidden mx-auto px-2 md:px-8 lg:px-16">
         <div className="container mx-auto px-4">
           <h2 className="text-center text-3xl md:text-4xl font-bold mb-14 text-primary">
             What Our Customers Say

@@ -80,7 +80,7 @@ export default function CartPage() {
     }
   }
   return (
-    <div className="container py-12">
+    <div className="container py-12 w-full max-w-screen overflow-x-hidden mx-auto px-2 md:px-8 lg:px-16">
       <h1 className="text-3xl font-bold tracking-tight">Your Shopping Cart</h1>
 
       <div className="mt-8 grid gap-8 md:grid-cols-12">

@@ -36,7 +36,7 @@ export default function ProductsPage() {
     fetchData();
   }, []);
   return (
-    <div className="container py-12">
+    <div className="container py-12 w-full max-w-screen overflow-x-hidden mx-auto px-2 md:px-8 lg:px-16">
       <div className="mb-12 text-center">
         <h1 className="text-4xl font-bold tracking-tight">
           Our Premium Dry Fruits

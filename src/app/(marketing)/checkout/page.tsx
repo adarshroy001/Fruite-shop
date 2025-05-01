@@ -71,7 +71,7 @@ export default function CheckoutPage() {
 
   if (productinfo.length === 0) {
     return (
-      <div className="container py-12 text-center">
+      <div className="container py-12 text-center w-full max-w-screen overflow-x-hidden mx-auto px-2 md:px-8 lg:px-16">
         <h1 className="text-2xl font-bold mb-4">Your cart is empty</h1>
         <Button onClick={() => router.push("/products")}>
           Browse Products
@@ -81,7 +81,7 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="container py-8">
+    <div className="container py-8 w-full max-w-screen overflow-x-hidden mx-auto px-2 md:px-8 lg:px-16">
       <h1 className="text-3xl font-bold tracking-tight mb-8">Checkout</h1>
 
       <div className="grid gap-8 md:grid-cols-2">

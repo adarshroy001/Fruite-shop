@@ -4,7 +4,7 @@ import { ArrowLeftRight, Leaf, ShieldCheck, Sprout, Truck } from "lucide-react";
 
 export default function AboutPage() {
   return (
-    <div className="container py-12 ml-10">
+    <div className="container py-12 w-full max-w-screen overflow-x-hidden mx-auto px-2 md:px-8 lg:px-16">
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold tracking-tight">Our Story</h1>
         <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">

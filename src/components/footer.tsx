@@ -6,8 +6,8 @@ import { FOOTER_LINKS, SOCIAL_LINKS } from "@/lib/constants";
 
 export default function Footer() {
   return (
-    <footer className="border-t bg-secondary/50">
-      <div className="container py-12 ml-5">
+    <footer className="border-t bg-secondary/50 w-full max-w-screen overflow-x-hidden">
+      <div className="container py-12 mx-auto px-4 md:px-8 lg:px-16">
         <div className="grid gap-12 md:grid-cols-4">
           <div>
             <h3 className="text-lg font-semibold">Farmlyf</h3>
