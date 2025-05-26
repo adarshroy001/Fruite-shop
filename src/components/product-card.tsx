@@ -141,17 +141,6 @@ export default function ProductCard({ product }: ProductCardProps) {
                       {product.description}
                     </p>
                   </div>
-
-                  {/* Add to Cart Button */}
-                  <div className="pt-4">
-                    <Button
-                      onClick={addToCart}
-                      className="w-full md:w-auto px-8 py-2"
-                      disabled={!session}
-                    >
-                      {session ? "Add to Cart" : "Sign in to Add to Cart"}
-                    </Button>
-                  </div>
                 </div>
               </div>
             </div>
