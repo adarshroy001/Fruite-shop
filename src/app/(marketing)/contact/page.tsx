@@ -16,50 +16,14 @@ export default function ContactPage() {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-12">
-        {/* Contact Form */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Send us a message</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form className="space-y-4">
-              <div className="space-y-2">
-                <label htmlFor="name">Name</label>
-                <Input id="name" placeholder="Your name" required />
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="email">Email</label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="your@email.com"
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="message">Message</label>
-                <Textarea
-                  id="message"
-                  placeholder="Your message"
-                  rows={5}
-                  required
-                />
-              </div>
-              <Button type="submit" className="w-full">
-                Send Message
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
-
-        {/* Contact Info */}
-        <div className="space-y-6">
+      {/* Centered Card Container */}
+      <div className="flex justify-center">
+        <div className="w-full max-w-2xl">
           <Card>
             <CardHeader>
-              <CardTitle>Contact Information</CardTitle>
+              <CardTitle className="text-center">Contact Information</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-6">
               <div className="flex items-start gap-4">
                 <MapPin className="h-5 w-5 mt-1 text-primary" />
                 <div>
@@ -71,6 +35,19 @@ export default function ContactPage() {
                   </p>
                 </div>
               </div>
+
+              <div className="flex items-start gap-4">
+                <MapPin className="h-5 w-5 mt-1 text-primary" />
+                <div>
+                  <h3 className="font-medium">Manufacturing Unit Address</h3>
+                  <p className="text-muted-foreground">
+                    HIG-461,K-5 Subudhipur, Kalinga Nagar
+                    <br />
+                    Bhubaneswar, Khorda Nagar, orissa-751019
+                  </p>
+                </div>
+              </div>
+
               <div className="flex items-start gap-4">
                 <Phone className="h-5 w-5 mt-1 text-primary" />
                 <div>
@@ -81,20 +58,28 @@ export default function ContactPage() {
                     </Link>
                   </p>
                   <p className="text-sm text-muted-foreground mt-1">
-                    Monday to Saturday, 9 AM to 6 PM
+                    24/7 support services
                   </p>
                 </div>
               </div>
+
               <div className="flex items-start gap-4">
                 <Mail className="h-5 w-5 mt-1 text-primary" />
                 <div>
                   <h3 className="font-medium">Email</h3>
                   <p className="text-muted-foreground">
                     <Link
-                      href="mailto:support@farmley.com"
+                      href="mailto:care@farmlyf.in"
                       className="hover:underline"
                     >
                       care@farmlyf.in
+                    </Link>
+                    <br />
+                    <Link
+                      href="mailto:sales@farmlyf.in"
+                      className="hover:underline"
+                    >
+                      sales@farmlyf.in
                     </Link>
                   </p>
                 </div>
@@ -103,7 +88,7 @@ export default function ContactPage() {
           </Card>
 
           {/* Social Media */}
-          <div className="flex gap-4 justify-center">
+          <div className="flex gap-4 justify-center mt-8">
             {[
               { name: "Facebook", icon: "facebook", url: "#" },
               { name: "Instagram", icon: "instagram", url: "#" },

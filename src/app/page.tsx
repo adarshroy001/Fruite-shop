@@ -4,8 +4,59 @@ import { Testimonial } from "@/components/testimonial";
 import Image from "next/image";
 import Link from "next/link";
 import { HeroCarousel } from "@/components/HeroCarousel";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function Home() {
+  const featuredProducts = [
+    {
+      id: 1,
+      name: "Almond",
+      image: "/images/almond.png",
+      color: "bg-amber-800",
+    },
+    {
+      id: 2,
+      name: "Cashew",
+      image: "/images/cashew.png",
+      color: "bg-teal-600",
+    },
+    {
+      id: 3,
+      name: "Pista",
+      image: "/images/pista.png",
+      color: "bg-olive-600",
+    },
+    {
+      id: 4,
+      name: "Walnut",
+      image: "/images/walnut.png",
+      color: "bg-rose-800",
+    },
+    {
+      id: 5,
+      name: "Raisin",
+      image: "/images/raisin.png",
+      color: "bg-orange-600",
+    },
+  ];
+
+  const launchedProducts = [
+    {
+      id: 1,
+      name: "Plain Cashew",
+      image: "/images/plain-cashew.png",
+      description: "Premium quality plain cashews, naturally sweet and crunchy",
+      price: "₹499",
+    },
+    {
+      id: 2,
+      name: "Salted Cashew",
+      image: "/images/salted-cashew.png",
+      description: "Perfectly salted cashews for the perfect snack",
+      price: "₹549",
+    },
+  ];
+
   return (
     <>
       {/* Hero Section */}
@@ -26,43 +77,119 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About section */}
-      <section id="about" className="py-20 bg-gray-50 dark:bg-gray-900 w-full max-w-screen overflow-x-hidden mx-auto px-2 md:px-8 lg:px-16">
-        <div className="container mx-auto grid md:grid-cols-2 gap-16 items-center">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">About Farmlyf</h2>
-            <p className="mb-8 text-gray-700 dark:text-gray-300 leading-relaxed">
-              At Farmlyf, we are passionate about bringing you the finest dry fruits directly from trusted farmers. Our commitment to quality and authenticity ensures that every product meets the highest standards.
-            </p>
-            <div className="grid gap-6">
-              <h3 className="text-xl font-semibold mb-2">Why Choose Farmlyf?</h3>
-              <ul className="grid gap-4">
-                <li className="flex items-center gap-3">
-                  <span className="text-2xl" role="img" aria-label="Leaf">🌱</span>
-                  <span>100% Natural and Fresh</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="text-2xl" role="img" aria-label="Handshake">🤝</span>
-                  <span>Ethically Sourced</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="text-2xl" role="img" aria-label="Check Mark">✅</span>
-                  <span>Quality Assured</span>
-                </li>
-              </ul>
+      {/* Featured Products Carousel */}
+      <section className="py-16 bg-white w-full max-w-screen overflow-x-hidden mx-auto px-2 md:px-8 lg:px-16">
+        <div className="container mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary">
+            Our Premium Collection
+          </h2>
+
+          {/* Product Carousel */}
+          <div className="relative mb-16">
+            <div className="flex items-center justify-center">
+              <button className="absolute left-0 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50">
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+
+              <div className="flex gap-4 overflow-x-auto scrollbar-hide px-12">
+                {featuredProducts.map((product) => (
+                  <div
+                    key={product.id}
+                    className={`flex-shrink-0 w-48 h-48 rounded-2xl ${product.color} flex flex-col items-center justify-center text-white shadow-lg hover:shadow-xl transition-shadow cursor-pointer p-4`}
+                  >
+                    <div className="w-32 h-32 mb-3 flex items-center justify-center bg-white/10 rounded-xl backdrop-blur-sm">
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        width={96}
+                        height={96}
+                        className="object-contain w-24 h-24"
+                        style={{
+                          filter:
+                            "drop-shadow(0 2px 4px rgba(255,255,255,0.1))",
+                          maxWidth: "100%",
+                          height: "auto",
+                        }}
+                      />
+                    </div>
+                    <h3 className="text-lg font-semibold text-center">
+                      {product.name}
+                    </h3>
+                  </div>
+                ))}
+              </div>
+
+              <button className="absolute right-0 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50">
+                <ChevronRight className="w-6 h-6" />
+              </button>
             </div>
           </div>
-          <div className="relative h-[350px] w-[350px] rounded-xl overflow-hidden shadow-xl p-20">
-            <Image
-              src="/images/about.webp"
-              alt="Farmlyf dry fruits"
-              fill
-              className="object-cover"
-              priority
-            />
+
+          {/* Launched Products Section */}
+          <div className="mb-16">
+            <h3 className="text-2xl md:text-3xl font-bold text-center mb-8 text-primary">
+              Our Launched Products
+            </h3>
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {launchedProducts.map((product) => (
+                <Card
+                  key={product.id}
+                  className="overflow-hidden hover:shadow-lg transition-shadow"
+                >
+                  <div className="relative h-64 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      width={200}
+                      height={200}
+                      className="object-contain max-w-[180px] max-h-[180px] drop-shadow-md"
+                      style={{
+                        width: "auto",
+                        height: "auto",
+                        maxWidth: "180px",
+                        maxHeight: "180px",
+                      }}
+                    />
+                  </div>
+                  <CardContent className="p-6">
+                    <h4 className="text-xl font-semibold mb-2">
+                      {product.name}
+                    </h4>
+                    <p className="text-gray-600 mb-4">{product.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* Gift Box Collection */}
+          <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-8 text-center">
+            <h3 className="text-2xl md:text-3xl font-bold mb-4 text-primary">
+              Premium Gift Box Collection
+            </h3>
+            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+              Perfect for festivals, celebrations, and special occasions. Our
+              premium gift boxes contain a curated selection of the finest dry
+              fruits.
+            </p>
+            <div className="relative h-64 mb-6 flex items-center justify-center">
+              <Image
+                src="/images/gift_product.png"
+                alt="Premium Gift Box Collection"
+                width={300}
+                height={240}
+                className="object-contain max-w-[750px] max-h-[300px] drop-shadow-lg"
+                style={{
+                  width: "750px",
+                  height: "300px",
+                }}
+              />
+            </div>
           </div>
         </div>
       </section>
+
+      {/* About section */}
 
       {/* Testimonials */}
       <section className="bg-gradient-to-b from-secondary/60 to-white py-20 w-full max-w-screen overflow-x-hidden mx-auto px-2 md:px-8 lg:px-16">

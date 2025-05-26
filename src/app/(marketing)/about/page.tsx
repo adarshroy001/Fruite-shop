@@ -6,7 +6,7 @@ export default function AboutPage() {
   return (
     <div className="container py-12 w-full max-w-screen overflow-x-hidden mx-auto px-2 md:px-8 lg:px-16">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold tracking-tight">Our Story</h1>
+        <h1 className="text-4xl font-bold tracking-tight">Mission & Vision</h1>
         <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
           From farm to table - our journey of bringing you the finest dry fruits
         </p>
@@ -20,9 +20,10 @@ export default function AboutPage() {
               Welcome to Farmlyf
             </h2>
             <p className="text-muted-foreground mb-4">
-              Where quality meets tradition. Our journey began with a simple
-              goal - to bring the finest dry fruits from trusted farmers
-              directly to your home.
+              At Farmlyf, we are passionate about bringing you the finest dry
+              fruits directly from trusted farmers. Our commitment to quality
+              and authenticity ensures that every product meets the highest
+              standards.
             </p>
             <p className="text-muted-foreground mb-4">
               With a focus on purity and freshness, we ensure every bite is

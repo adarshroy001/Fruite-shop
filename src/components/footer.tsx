@@ -44,17 +44,6 @@ export default function Footer() {
               </ul>
             </div>
           ))}
-
-          <div>
-            <h4 className="text-sm font-semibold">Newsletter</h4>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Subscribe to get updates on new products and offers
-            </p>
-            <div className="mt-4 flex gap-2">
-              <Input placeholder="Your email" className="flex-1" />
-              <Button variant="outline">Subscribe</Button>
-            </div>
-          </div>
         </div>
 
         <div className="mt-12 border-t pt-8 text-center text-sm text-muted-foreground">
