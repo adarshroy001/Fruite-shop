@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Testimonial } from "@/components/testimonial";
@@ -5,9 +7,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { HeroCarousel } from "@/components/HeroCarousel";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useState } from "react";
+
+interface FeaturedProduct {
+  id: number;
+  name: string;
+  image: string;
+  color: string;
+}
+
+interface LaunchedProduct {
+  id: number;
+  name: string;
+  images: string[];
+  description: string;
+  price: string;
+}
 
 export default function Home() {
-  const featuredProducts = [
+  const featuredProducts: FeaturedProduct[] = [
     {
       id: 1,
       name: "Almond",
@@ -40,22 +58,44 @@ export default function Home() {
     },
   ];
 
-  const launchedProducts = [
+  const launchedProducts: LaunchedProduct[] = [
     {
       id: 1,
       name: "Plain Cashew",
-      image: "/images/plain-cashew.png",
+      images: ["/images/plain-cashew.png", "/images/back-plain-cashew.png"], // Only use existing image for now
       description: "Premium quality plain cashews, naturally sweet and crunchy",
       price: "₹499",
     },
     {
       id: 2,
       name: "Salted Cashew",
-      image: "/images/salted-cashew.png",
+      images: ["/images/salted-cashew.png", "/images/back-salted-cashew.jpg"], // Only use existing image for now
       description: "Perfectly salted cashews for the perfect snack",
       price: "₹549",
     },
   ];
+
+  const [currentSlides, setCurrentSlides] = useState<Record<number, number>>(
+    launchedProducts.reduce((acc: Record<number, number>, product) => {
+      acc[product.id] = 0;
+      return acc;
+    }, {})
+  );
+
+  const nextSlide = (productId: number, totalImages: number) => {
+    setCurrentSlides((prev) => ({
+      ...prev,
+      [productId]: (prev[productId] + 1) % totalImages,
+    }));
+  };
+
+  const prevSlide = (productId: number, totalImages: number) => {
+    setCurrentSlides((prev) => ({
+      ...prev,
+      [productId]:
+        prev[productId] === 0 ? totalImages - 1 : prev[productId] - 1,
+    }));
+  };
 
   return (
     <>
@@ -137,17 +177,62 @@ export default function Home() {
                   className="overflow-hidden hover:shadow-lg transition-shadow"
                 >
                   <div className="relative h-48 sm:h-56 md:h-64 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+                    {/* Slide Navigation Buttons */}
+                    {product.images.length > 1 && (
+                      <>
+                        <button
+                          onClick={() =>
+                            prevSlide(product.id, product.images.length)
+                          }
+                          className="absolute left-2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full p-1.5 transition-all duration-200"
+                        >
+                          <ChevronLeft className="w-4 h-4 text-gray-600" />
+                        </button>
+                        <button
+                          onClick={() =>
+                            nextSlide(product.id, product.images.length)
+                          }
+                          className="absolute right-2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full p-1.5 transition-all duration-200"
+                        >
+                          <ChevronRight className="w-4 h-4 text-gray-600" />
+                        </button>
+                      </>
+                    )}
+
+                    {/* Product Image */}
                     <Image
-                      src={product.image}
+                      src={product.images[currentSlides[product.id]]}
                       alt={product.name}
                       width={200}
                       height={200}
-                      className="object-contain max-w-[120px] max-h-[120px] sm:max-w-[150px] sm:max-h-[150px] md:max-w-[180px] md:max-h-[180px] drop-shadow-md"
+                      className="object-contain max-w-[120px] max-h-[120px] sm:max-w-[150px] sm:max-h-[150px] md:max-w-[180px] md:max-h-[180px] drop-shadow-md transition-opacity duration-300"
                       style={{
                         width: "auto",
                         height: "auto",
                       }}
                     />
+
+                    {/* Slide Indicators */}
+                    {product.images.length > 1 && (
+                      <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1">
+                        {product.images.map((_, index: number) => (
+                          <button
+                            key={index}
+                            onClick={() =>
+                              setCurrentSlides((prev) => ({
+                                ...prev,
+                                [product.id]: index,
+                              }))
+                            }
+                            className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                              currentSlides[product.id] === index
+                                ? "bg-gray-600"
+                                : "bg-gray-300 hover:bg-gray-400"
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    )}
                   </div>
                   <CardContent className="p-4 sm:p-5 md:p-6">
                     <h4 className="text-lg sm:text-xl font-semibold mb-2">

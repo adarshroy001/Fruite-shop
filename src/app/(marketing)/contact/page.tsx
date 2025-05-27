@@ -34,6 +34,17 @@ export default function ContactPage() {
               </div>
             </div>
             <div className="flex items-start gap-4">
+              <MapPin className="h-5 w-5 mt-1 text-primary" />
+              <div>
+                <h3 className="font-medium">Manufacturing Unit Address</h3>
+                <p className="text-muted-foreground">
+                  Kamal enterprises, Jhinkaragadi
+                  <br />
+                  Bhaliabol kateni, Dhenkanal-759015, Odisha
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4">
               <Phone className="h-5 w-5 mt-1 text-primary" />
               <div>
                 <h3 className="font-medium">Phone</h3>
@@ -43,7 +54,7 @@ export default function ContactPage() {
                   </Link>
                 </p>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Monday to Saturday, 9 AM to 6 PM
+                  24/7 support services
                 </p>
               </div>
             </div>
@@ -53,10 +64,17 @@ export default function ContactPage() {
                 <h3 className="font-medium">Email</h3>
                 <p className="text-muted-foreground">
                   <Link
-                    href="mailto:support@farmley.com"
+                    href="mailto:care@farmlyf.in"
                     className="hover:underline"
                   >
                     care@farmlyf.in
+                  </Link>
+                  <br />
+                  <Link
+                    href="mailto:sales@farmlyf.in"
+                    className="hover:underline"
+                  >
+                    sales@farmlyf.in
                   </Link>
                 </p>
               </div>
