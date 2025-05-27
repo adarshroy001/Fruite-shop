@@ -38,12 +38,18 @@ export default function ContactPage() {
               <div>
                 <h3 className="font-medium">Manufacturing Unit Address</h3>
                 <p className="text-muted-foreground">
+                  HIG-461,K-5 Subudhipur, Kalinga Nagar
+                  <br />
+                  Bhubaneswar, Khorda Nagar, orissa-751019,
+                </p>
+                <p className="text-muted-foreground">
                   Kamal enterprises, Jhinkaragadi
                   <br />
                   Bhaliabol kateni, Dhenkanal-759015, Odisha
                 </p>
               </div>
             </div>
+
             <div className="flex items-start gap-4">
               <Phone className="h-5 w-5 mt-1 text-primary" />
               <div>
