@@ -1,12 +1,8 @@
-'use client'
+"use client";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-const images = [
-  "/images/HS-1.png",
-  "/images/HS-2.png",
-  "/images/HS-3.png",
-];
+const images = ["/images/HS-1.png", "/images/HS-2.png", "/images/HS-3.png"];
 
 export function HeroCarousel() {
   const [current, setCurrent] = useState(0);
@@ -47,12 +43,12 @@ export function HeroCarousel() {
   }, [isTransitioning]);
 
   return (
-    <div className="relative  h-[500px] w-full max-w-screen overflow-x-hidden ">
+    <div className="relative h-[400px] sm:h-[450px] md:h-[500px] w-full max-w-screen overflow-x-hidden ">
       <div
         className="absolute inset-0 flex"
         style={{
           transform: `translateX(-${current * 100}%)`,
-          transition: isTransitioning ? 'transform 700ms ease' : 'none',
+          transition: isTransitioning ? "transform 700ms ease" : "none",
         }}
         onTransitionEnd={handleTransitionEnd}
       >

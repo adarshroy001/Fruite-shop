@@ -78,7 +78,7 @@ export default function Home() {
       </section>
 
       {/* Featured Products Carousel */}
-      <section className="py-8 sm:py-12 md:py-16 bg-white w-full max-w-screen overflow-x-hidden mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
+      <section className="py-8 sm:py-12 md:py-30 bg-white w-full max-w-screen overflow-x-hidden mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
         <div className="container mx-auto">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-10 md:mb-12 text-primary">
             Our Premium Collection
