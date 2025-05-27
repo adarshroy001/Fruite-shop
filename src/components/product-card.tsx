@@ -120,17 +120,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                   </div>
 
                   {/* Rating */}
-                  <div className="flex items-center gap-2">
-                    <div className="flex">{renderStars(product.rating)}</div>
-                    <span className="text-sm text-gray-600">
-                      ({product.rating.toFixed(1)})
-                    </span>
-                  </div>
-
-                  {/* Price */}
-                  <div className="text-3xl font-bold text-primary">
-                    ${product.price.toFixed(2)}
-                  </div>
+                  <div className="flex items-center gap-2"></div>
 
                   {/* Description */}
                   <div>
