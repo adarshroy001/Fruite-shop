@@ -16,94 +16,76 @@ export default function ContactPage() {
         </p>
       </div>
 
-      {/* Centered Card Container */}
-      <div className="flex justify-center">
-        <div className="w-full max-w-2xl">
+      <div className="grid md:grid-cols-2 gap-12">
+        <Card>
+          <CardHeader>
+            <CardTitle>Contact Information</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex items-start gap-4">
+              <MapPin className="h-5 w-5 mt-1 text-primary" />
+              <div>
+                <h3 className="font-medium">Address</h3>
+                <p className="text-muted-foreground">
+                  HIG-461,K-5 Subudhipur, Kalinga Nagar
+                  <br />
+                  Bhubaneswar, Khorda Nagar, orissa-751019
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4">
+              <Phone className="h-5 w-5 mt-1 text-primary" />
+              <div>
+                <h3 className="font-medium">Phone</h3>
+                <p className="text-muted-foreground">
+                  <Link href="tel:+911234567890" className="hover:underline">
+                    1800 890 8177
+                  </Link>
+                </p>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Monday to Saturday, 9 AM to 6 PM
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4">
+              <Mail className="h-5 w-5 mt-1 text-primary" />
+              <div>
+                <h3 className="font-medium">Email</h3>
+                <p className="text-muted-foreground">
+                  <Link
+                    href="mailto:support@farmley.com"
+                    className="hover:underline"
+                  >
+                    care@farmlyf.in
+                  </Link>
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        {/* Contact Info */}
+        <div className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle className="text-center">Contact Information</CardTitle>
+              <CardTitle>Find Us</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="flex items-start gap-4">
-                <MapPin className="h-5 w-5 mt-1 text-primary" />
-                <div>
-                  <h3 className="font-medium">Address</h3>
-                  <p className="text-muted-foreground">
-                    HIG-461,K-5 Subudhipur, Kalinga Nagar
-                    <br />
-                    Bhubaneswar, Khorda Nagar, orissa-751019
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <MapPin className="h-5 w-5 mt-1 text-primary" />
-                <div>
-                  <h3 className="font-medium">Manufacturing Unit Address</h3>
-                  <p className="text-muted-foreground">
-                    HIG-461,K-5 Subudhipur, Kalinga Nagar
-                    <br />
-                    Bhubaneswar, Khorda Nagar, orissa-751019
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <Phone className="h-5 w-5 mt-1 text-primary" />
-                <div>
-                  <h3 className="font-medium">Phone</h3>
-                  <p className="text-muted-foreground">
-                    <Link href="tel:+911234567890" className="hover:underline">
-                      1800 890 8177
-                    </Link>
-                  </p>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    24/7 support services
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <Mail className="h-5 w-5 mt-1 text-primary" />
-                <div>
-                  <h3 className="font-medium">Email</h3>
-                  <p className="text-muted-foreground">
-                    <Link
-                      href="mailto:care@farmlyf.in"
-                      className="hover:underline"
-                    >
-                      care@farmlyf.in
-                    </Link>
-                    <br />
-                    <Link
-                      href="mailto:sales@farmlyf.in"
-                      className="hover:underline"
-                    >
-                      sales@farmlyf.in
-                    </Link>
-                  </p>
-                </div>
+            <CardContent>
+              <div className="aspect-video bg-muted rounded-lg overflow-hidden">
+                {/* Replace with your actual map embed */}
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.715257845924!2d72.8242144153779!3d19.04355725872683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c96a34dc4401%3A0x3ffc07e83942b13f!2sMumbai!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
               </div>
             </CardContent>
           </Card>
 
           {/* Social Media */}
-          <div className="flex gap-4 justify-center mt-8">
-            {[
-              { name: "Facebook", icon: "facebook", url: "#" },
-              { name: "Instagram", icon: "instagram", url: "#" },
-              { name: "Twitter", icon: "twitter", url: "#" },
-              { name: "LinkedIn", icon: "linkedin", url: "#" },
-            ].map((social) => (
-              <Button key={social.name} variant="outline" size="icon" asChild>
-                <Link href={social.url} aria-label={social.name}>
-                  <span className="sr-only">{social.name}</span>
-                  {/* Replace with actual icons */}
-                  <div className="h-5 w-5" />
-                </Link>
-              </Button>
-            ))}
-          </div>
         </div>
       </div>
     </div>
