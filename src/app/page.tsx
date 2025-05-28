@@ -6,7 +6,7 @@ import { Testimonial } from "@/components/testimonial";
 import Image from "next/image";
 import Link from "next/link";
 import { HeroCarousel } from "@/components/HeroCarousel";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
 import { useState } from "react";
 
 interface FeaturedProduct {
@@ -62,14 +62,14 @@ export default function Home() {
     {
       id: 1,
       name: "Plain Cashew",
-      images: ["/images/plain-cashew.png", "/images/back-plain-cashew.png"], // Only use existing image for now
+      images: ["/images/plain-cashew.png", "/images/back-plain-cashew.png"],
       description: "Premium quality plain cashews, naturally sweet and crunchy",
       price: "₹499",
     },
     {
       id: 2,
       name: "Salted Cashew",
-      images: ["/images/salted-cashew.png", "/images/back-salted-cashew.jpg"], // Only use existing image for now
+      images: ["/images/salted-cashew.png", "/images/back-salt-cashew.png"],
       description: "Perfectly salted cashews for the perfect snack",
       price: "₹549",
     },
@@ -81,6 +81,10 @@ export default function Home() {
       return acc;
     }, {})
   );
+
+  // Zoom modal states
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
+  const [zoomedImageName, setZoomedImageName] = useState<string>("");
 
   const nextSlide = (productId: number, totalImages: number) => {
     setCurrentSlides((prev) => ({
@@ -95,6 +99,18 @@ export default function Home() {
       [productId]:
         prev[productId] === 0 ? totalImages - 1 : prev[productId] - 1,
     }));
+  };
+
+  const openZoom = (imageSrc: string, productName: string) => {
+    setZoomedImage(imageSrc);
+    setZoomedImageName(productName);
+    document.body.style.overflow = "hidden"; // Prevent background scrolling
+  };
+
+  const closeZoom = () => {
+    setZoomedImage(null);
+    setZoomedImageName("");
+    document.body.style.overflow = "unset"; // Restore scrolling
   };
 
   return (
@@ -176,7 +192,7 @@ export default function Home() {
                   key={product.id}
                   className="overflow-hidden hover:shadow-lg transition-shadow"
                 >
-                  <div className="relative h-48 sm:h-56 md:h-64 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+                  <div className="relative h-48 sm:h-56 md:h-64 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center group">
                     {/* Slide Navigation Buttons */}
                     {product.images.length > 1 && (
                       <>
@@ -184,7 +200,7 @@ export default function Home() {
                           onClick={() =>
                             prevSlide(product.id, product.images.length)
                           }
-                          className="absolute left-2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full p-1.5 transition-all duration-200"
+                          className="absolute left-2 z-20 bg-white/80 hover:bg-white shadow-md rounded-full p-1.5 transition-all duration-200"
                         >
                           <ChevronLeft className="w-4 h-4 text-gray-600" />
                         </button>
@@ -192,29 +208,52 @@ export default function Home() {
                           onClick={() =>
                             nextSlide(product.id, product.images.length)
                           }
-                          className="absolute right-2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full p-1.5 transition-all duration-200"
+                          className="absolute right-2 z-20 bg-white/80 hover:bg-white shadow-md rounded-full p-1.5 transition-all duration-200"
                         >
                           <ChevronRight className="w-4 h-4 text-gray-600" />
                         </button>
                       </>
                     )}
 
+                    {/* Zoom Button */}
+                    <button
+                      onClick={() =>
+                        openZoom(
+                          product.images[currentSlides[product.id]],
+                          product.name
+                        )
+                      }
+                      className="absolute top-2 right-2 z-20 bg-white/80 hover:bg-white shadow-md rounded-full p-1.5 transition-all duration-200 opacity-0 group-hover:opacity-100"
+                    >
+                      <ZoomIn className="w-4 h-4 text-gray-600" />
+                    </button>
+
                     {/* Product Image */}
-                    <Image
-                      src={product.images[currentSlides[product.id]]}
-                      alt={product.name}
-                      width={200}
-                      height={200}
-                      className="object-contain max-w-[120px] max-h-[120px] sm:max-w-[150px] sm:max-h-[150px] md:max-w-[180px] md:max-h-[180px] drop-shadow-md transition-opacity duration-300"
-                      style={{
-                        width: "auto",
-                        height: "auto",
-                      }}
-                    />
+                    <div
+                      className="cursor-pointer w-full h-full flex items-center justify-center"
+                      onClick={() =>
+                        openZoom(
+                          product.images[currentSlides[product.id]],
+                          product.name
+                        )
+                      }
+                    >
+                      <Image
+                        src={product.images[currentSlides[product.id]]}
+                        alt={product.name}
+                        width={400}
+                        height={400}
+                        className="object-contain max-w-[180px] max-h-[180px] sm:max-w-[150px] sm:max-h-[150px] md:max-w-[180px] md:max-h-[180px] drop-shadow-md transition-all duration-300 group-hover:scale-105"
+                        style={{
+                          width: "auto",
+                          height: "auto",
+                        }}
+                      />
+                    </div>
 
                     {/* Slide Indicators */}
                     {product.images.length > 1 && (
-                      <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1">
+                      <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1 z-10">
                         {product.images.map((_, index: number) => (
                           <button
                             key={index}
@@ -274,7 +313,42 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About section */}
+      {/* Zoom Modal */}
+      {zoomedImage && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="relative max-w-[90vw] max-h-[90vh] bg-white rounded-lg overflow-hidden">
+            {/* Close Button */}
+            <button
+              onClick={closeZoom}
+              className="absolute top-4 right-4 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 transition-all duration-200"
+            >
+              <X className="w-6 h-6 text-gray-600" />
+            </button>
+
+            {/* Product Name */}
+            <div className="absolute top-4 left-4 z-10 bg-white/90 px-3 py-1 rounded-full">
+              <h3 className="text-sm font-medium text-gray-700">
+                {zoomedImageName}
+              </h3>
+            </div>
+
+            {/* Zoomed Image */}
+            <div className="flex items-center justify-center p-8">
+              <Image
+                src={zoomedImage}
+                alt={zoomedImageName}
+                width={800}
+                height={800}
+                className="object-contain max-w-full max-h-[80vh] rounded-lg"
+                style={{
+                  width: "auto",
+                  height: "auto",
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Testimonials */}
       <section className="bg-gradient-to-b from-secondary/60 to-white py-12 sm:py-16 md:py-20 w-full max-w-screen overflow-x-hidden mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
