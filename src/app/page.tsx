@@ -42,7 +42,7 @@ export default function Home() {
       id: 3,
       name: "Pista",
       image: "/images/pista.png",
-      color: "bg-olive-600",
+      color: "bg-lime-500",
     },
     {
       id: 4,
