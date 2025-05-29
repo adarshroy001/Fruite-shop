@@ -97,7 +97,7 @@ export default function ContactPage() {
               <div className="aspect-video bg-muted rounded-lg overflow-hidden">
                 {/* Replace with your actual map embed */}
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.715257845924!2d72.8242144153779!3d19.04355725872683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c96a34dc4401%3A0x3ffc07e83942b13f!2sMumbai!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3734.5301190144733!2d85.5177018745449!3d20.607238002124213!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a18e0d553c1221f%3A0x3e0695a0033ae77c!2sKamal%20Enterprises%2CDhenkanal!5e0!3m2!1sen!2sin!4v1748498249968!5m2!1sen!2sin"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
