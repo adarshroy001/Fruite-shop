@@ -73,6 +73,38 @@ export default function Home() {
       description: "Perfectly salted cashews for the perfect snack",
       price: "₹549",
     },
+    {
+      id: 3,
+      name: "Fuxnuts – Plain",
+      images: ["/images/Fuxnuts.png"],
+      description:
+        "Farm-fresh foxnuts (makhana) roasted to crunchy perfection with zero additives—clean, pure snacking.",
+      price: "₹549",
+    },
+    {
+      id: 4,
+      name: "Fuxnuts – Pudina Patakha",
+      images: ["/images/Fuxnuts-Pudina.png"],
+      description:
+        "Zesty mint-seasoned foxnuts with a desi punch—light, crunchy, and bursting with flavor.",
+      price: "₹549",
+    },
+    {
+      id: 5,
+      name: "Trail Mix – Party Pack",
+      images: ["/images/trailmix.png"],
+      description:
+        "A festive mix of nuts, seeds, and dried fruits to add flavor and fun to every gathering.",
+      price: "₹549",
+    },
+    {
+      id: 6,
+      name: "Trail Mix – Sports Pack",
+      images: ["/images/trailmix-sport.png"],
+      description:
+        "A high-energy blend of protein-packed nuts and superfoods to fuel your workouts and outdoor adventures.",
+      price: "₹549",
+    },
   ];
 
   const [currentSlides, setCurrentSlides] = useState<Record<number, number>>(
