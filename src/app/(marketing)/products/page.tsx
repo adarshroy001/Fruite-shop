@@ -13,28 +13,93 @@ import ProductCard from "@/components/product-card";
 import { Products } from "@/lib/constants";
 import { Search } from "lucide-react";
 import { Product } from "@/lib/constants";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 
 export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const response = await axios.get("/api/product");
 
         if (!response.data?.products) {
-          console.warn("No 'product' field in response data");
+          console.warn("No 'products' field in response data");
         }
 
         setProducts(response.data.products || []);
       } catch (error: any) {
         console.error("API Error:", error.response?.data || error.message);
         setProducts([]); // Set empty array on error
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
   }, []);
+
+  // Filtered products based on search term and category
+  const filteredProducts = useMemo(() => {
+    let filtered = products;
+
+    // Filter by search term
+    if (searchTerm.trim()) {
+      filtered = filtered.filter(
+        (product) =>
+          product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          product.description
+            ?.toLowerCase()
+            .includes(searchTerm.toLowerCase()) ||
+          product.category?.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    // Filter by category
+    if (selectedCategory !== "all") {
+      filtered = filtered.filter((product) => {
+        const productCategory = product.category?.toLowerCase();
+
+        // Map your categories to match the select options
+        switch (selectedCategory) {
+          case "nuts":
+            return (
+              productCategory === "cashews" ||
+              productCategory === "almond" ||
+              productCategory === "nuts"
+            );
+          case "seeds":
+            return productCategory === "seeds";
+          case "dried-fruits":
+            return (
+              productCategory === "raisins" ||
+              productCategory === "dried-fruits"
+            );
+          case "gift-boxes":
+            return (
+              productCategory === "mixtures" || productCategory === "gift-boxes"
+            );
+          default:
+            return productCategory === selectedCategory;
+        }
+      });
+    }
+
+    return filtered;
+  }, [products, searchTerm, selectedCategory]);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleCategoryChange = (value: string) => {
+    setSelectedCategory(value);
+  };
+
   return (
     <div className="container py-12 w-full max-w-screen overflow-x-hidden mx-auto px-2 md:px-8 lg:px-16">
       <div className="mb-12 text-center">
@@ -48,29 +113,76 @@ export default function ProductsPage() {
 
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="relative w-full sm:w-[300px]">
-          <Input placeholder="Search products..." className="pl-10" />
+          <Input
+            placeholder="Search products..."
+            className="pl-10"
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         </div>
 
-        <Select>
+        <Select value={selectedCategory} onValueChange={handleCategoryChange}>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Filter by category" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Products</SelectItem>
-            <SelectItem value="nuts">Nuts</SelectItem>
+            <SelectItem value="nuts">Nuts (Cashews, Almonds)</SelectItem>
             <SelectItem value="seeds">Seeds</SelectItem>
-            <SelectItem value="dried-fruits">Dried Fruits</SelectItem>
-            <SelectItem value="gift-boxes">Gift Boxes</SelectItem>
+            <SelectItem value="dried-fruits">Dried Fruits (Raisins)</SelectItem>
+            <SelectItem value="gift-boxes">Mixtures & Gift Boxes</SelectItem>
           </SelectContent>
         </Select>
       </div>
 
+      {/* Results summary */}
+      <div className="mb-6">
+        <p className="text-sm text-muted-foreground">
+          {loading
+            ? "Loading products..."
+            : `Showing ${filteredProducts.length} of ${products.length} products`}
+          {searchTerm && ` for "${searchTerm}"`}
+          {selectedCategory !== "all" && ` in ${selectedCategory}`}
+        </p>
+      </div>
+
+      {/* Products grid */}
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {products &&
-          products.map((product, Index) => (
-            <ProductCard key={Index} product={product} />
-          ))}
+        {loading ? (
+          // Loading skeleton
+          Array.from({ length: 8 }).map((_, index) => (
+            <div key={index} className="animate-pulse">
+              <div className="bg-gray-200 rounded-lg h-64 mb-4"></div>
+              <div className="bg-gray-200 rounded h-4 mb-2"></div>
+              <div className="bg-gray-200 rounded h-4 w-3/4"></div>
+            </div>
+          ))
+        ) : filteredProducts.length > 0 ? (
+          filteredProducts.map((product, index) => (
+            <ProductCard key={product.id || index} product={product} />
+          ))
+        ) : (
+          // No results found
+          <div className="col-span-full text-center py-12">
+            <div className="text-gray-400 mb-4">
+              <Search className="h-12 w-12 mx-auto mb-4" />
+            </div>
+            <h3 className="text-lg font-semibold mb-2">No products found</h3>
+            <p className="text-muted-foreground mb-4">
+              Try adjusting your search terms or category filter.
+            </p>
+            <Button
+              variant="outline"
+              onClick={() => {
+                setSearchTerm("");
+                setSelectedCategory("all");
+              }}
+            >
+              Clear filters
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
