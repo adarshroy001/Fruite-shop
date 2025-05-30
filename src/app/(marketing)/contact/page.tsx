@@ -25,7 +25,7 @@ export default function ContactPage() {
             <div className="flex items-start gap-4">
               <MapPin className="h-5 w-5 mt-1 text-primary" />
               <div>
-                <h3 className="font-medium">Address</h3>
+                <h3 className="font-medium">Contact Address</h3>
                 <p className="text-muted-foreground">
                   HIG-461,K-5 Subudhipur, Kalinga Nagar
                   <br />

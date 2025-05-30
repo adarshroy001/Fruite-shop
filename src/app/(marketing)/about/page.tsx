@@ -1,6 +1,14 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
-import { ArrowLeftRight, Leaf, ShieldCheck, Sprout, Truck } from "lucide-react";
+import {
+  ArrowLeftRight,
+  Leaf,
+  ShieldCheck,
+  Sprout,
+  Truck,
+  Target,
+  Eye,
+} from "lucide-react";
 
 export default function AboutPage() {
   return (
@@ -12,24 +20,58 @@ export default function AboutPage() {
         </p>
       </div>
 
-      <div className="grid gap-12 ">
+      <div className="grid gap-12">
+        {/* Mission & Vision Section */}
+        <section className="grid md:grid-cols-2 gap-8">
+          <Card className="border-2 border-primary/20">
+            <CardHeader className="text-center">
+              <Target className="h-12 w-12 text-primary mx-auto mb-2" />
+              <CardTitle className="text-2xl">Our Mission</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground text-center leading-relaxed">
+                To create a fair, transparent, and sustainable dry fruit
+                ecosystem by connecting consumers with farmers through
+                quality-first, ethically sourced products.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-2 border-secondary/50">
+            <CardHeader className="text-center">
+              <Eye className="h-12 w-12 text-blue-600 mx-auto mb-2" />
+              <CardTitle className="text-2xl">Our Vision</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground text-center leading-relaxed">
+                To become India's most trusted and responsible dry fruit brand
+                by empowering farmers, minimizing environmental impact, and
+                delivering unmatched purity to every household.
+              </p>
+            </CardContent>
+          </Card>
+        </section>
+
         {/* Our Story Section */}
         <section className="grid md:grid-cols-2 gap-8 items-center">
           <div>
             <h2 className="text-3xl font-bold tracking-tight mb-4">
-              Welcome to Farmlyf
+              About Farmley
             </h2>
             <p className="text-muted-foreground mb-4">
-              At Farmlyf, we are passionate about bringing you the finest dry
-              fruits directly from trusted farmers. Our commitment to quality
-              and authenticity ensures that every product meets the highest
-              standards.
+              At Farmley, we believe that great taste begins at the root — with
+              the farmer. We are a farmer-first brand committed to bringing you
+              premium dry fruits sourced directly from trusted farms across
+              India. By eliminating middlemen and embracing ethical sourcing, we
+              ensure that every bite is packed with natural goodness,
+              transparency, and trust.
             </p>
             <p className="text-muted-foreground mb-4">
-              With a focus on purity and freshness, we ensure every bite is
-              packed with nutrition and taste. At Farmley, we celebrate the rich
-              heritage of dry fruits while embracing innovation to meet modern
-              tastes.
+              We work hand-in-hand with farming communities to uphold purity,
+              freshness, and sustainability at every stage — from soil to shelf.
+              Whether it's almonds from the hills or cashews from the coast, our
+              products carry the essence of honest farming and modern
+              processing.
             </p>
             <div className="flex items-center gap-2 text-primary">
               <Leaf className="h-5 w-5" />
@@ -122,7 +164,7 @@ export default function AboutPage() {
         {/* Why Choose Us */}
         <section>
           <h2 className="text-3xl font-bold tracking-tight mb-8 text-center">
-            Why Choose Farmlyf
+            Why Choose Farmley
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
