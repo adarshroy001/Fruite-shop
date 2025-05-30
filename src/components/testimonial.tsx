@@ -20,11 +20,7 @@ export function Testimonial({ quote, author }: TestimonialProps) {
         <div className="flex flex-col h-full gap-4">
           <div className="flex items-center gap-4">
             <Avatar>
-              <AvatarImage
-                src={`/images/avatars/${author
-                  .toLowerCase()
-                  .replace(" ", "-")}.jpg`}
-              />
+              <AvatarImage src={""} />
               <AvatarFallback>{initials}</AvatarFallback>
             </Avatar>
             <div>

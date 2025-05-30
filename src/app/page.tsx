@@ -40,18 +40,30 @@ export default function Home() {
     },
     {
       id: 3,
+      name: "Fuxnuts",
+      image: "/images/Fuxnuts-Pudina.png",
+      color: "bg-zinc-800",
+    },
+    {
+      id: 4,
+      name: "Trail Mix",
+      image: "/images/trailmix.png",
+      color: "bg-amber-500",
+    },
+    {
+      id: 5,
       name: "Pista",
       image: "/images/pista.png",
       color: "bg-lime-500",
     },
     {
-      id: 4,
+      id: 6,
       name: "Walnut",
       image: "/images/walnut.png",
       color: "bg-rose-800",
     },
     {
-      id: 5,
+      id: 7,
       name: "Raisin",
       image: "/images/raisin.png",
       color: "bg-orange-600",
@@ -71,38 +83,6 @@ export default function Home() {
       name: "Salted Cashew",
       images: ["/images/salted-cashew.png", "/images/back-salt-cashew.png"],
       description: "Perfectly salted cashews for the perfect snack",
-      price: "₹549",
-    },
-    {
-      id: 3,
-      name: "Fuxnuts – Plain",
-      images: ["/images/Fuxnuts.png"],
-      description:
-        "Farm-fresh foxnuts (makhana) roasted to crunchy perfection with zero additives—clean, pure snacking.",
-      price: "₹549",
-    },
-    {
-      id: 4,
-      name: "Fuxnuts – Pudina Patakha",
-      images: ["/images/Fuxnuts-Pudina.png"],
-      description:
-        "Zesty mint-seasoned foxnuts with a desi punch—light, crunchy, and bursting with flavor.",
-      price: "₹549",
-    },
-    {
-      id: 5,
-      name: "Trail Mix – Party Pack",
-      images: ["/images/trailmix.png"],
-      description:
-        "A festive mix of nuts, seeds, and dried fruits to add flavor and fun to every gathering.",
-      price: "₹549",
-    },
-    {
-      id: 6,
-      name: "Trail Mix – Sports Pack",
-      images: ["/images/trailmix-sport.png"],
-      description:
-        "A high-energy blend of protein-packed nuts and superfoods to fuel your workouts and outdoor adventures.",
       price: "₹549",
     },
   ];
