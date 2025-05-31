@@ -29,7 +29,7 @@ export default function ContactPage() {
                 <p className="text-muted-foreground">
                   HIG-461,K-5 Subudhipur, Kalinga Nagar
                   <br />
-                  Bhubaneswar, Khorda Nagar, Orissa-751019
+                  Bhubaneswar, Khorda Nagar, Odisha-751019
                 </p>
               </div>
             </div>
