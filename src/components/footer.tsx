@@ -14,17 +14,6 @@ export default function Footer() {
             <p className="mt-2 text-sm text-muted-foreground">
               Pure, Nutritious, and Delicious Dry Fruits
             </p>
-            <div className="mt-6 flex gap-4">
-              {SOCIAL_LINKS.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.url}
-                  className="text-muted-foreground hover:text-primary"
-                >
-                  <link.icon className="h-5 w-5" />
-                </Link>
-              ))}
-            </div>
           </div>
 
           {FOOTER_LINKS.map((section) => (
