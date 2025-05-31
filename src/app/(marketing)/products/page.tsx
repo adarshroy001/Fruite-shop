@@ -43,6 +43,20 @@ export default function ProductsPage() {
     fetchData();
   }, []);
 
+  // Helper function to get category from product title
+  const getCategoryFromTitle = (title: string): string => {
+    const lowerTitle = title.toLowerCase();
+
+    if (lowerTitle.includes("almond")) return "almonds";
+    if (lowerTitle.includes("cashew")) return "cashews";
+    if (lowerTitle.includes("raisin")) return "raisins";
+    if (lowerTitle.includes("trail") || lowerTitle.includes("mix"))
+      return "trailmix";
+    if (lowerTitle.includes("fuxnut")) return "fuxnuts";
+
+    return "other";
+  };
+
   // Filtered products based on search term and category
   const filteredProducts = useMemo(() => {
     let filtered = products;
@@ -62,30 +76,8 @@ export default function ProductsPage() {
     // Filter by category
     if (selectedCategory !== "all") {
       filtered = filtered.filter((product) => {
-        const productCategory = product.category?.toLowerCase();
-
-        // Map your categories to match the select options
-        switch (selectedCategory) {
-          case "nuts":
-            return (
-              productCategory === "cashews" ||
-              productCategory === "almond" ||
-              productCategory === "nuts"
-            );
-          case "seeds":
-            return productCategory === "seeds";
-          case "dried-fruits":
-            return (
-              productCategory === "raisins" ||
-              productCategory === "dried-fruits"
-            );
-          case "gift-boxes":
-            return (
-              productCategory === "mixtures" || productCategory === "gift-boxes"
-            );
-          default:
-            return productCategory === selectedCategory;
-        }
+        const productCategory = getCategoryFromTitle(product.title);
+        return productCategory === selectedCategory;
       });
     }
 
@@ -128,10 +120,11 @@ export default function ProductsPage() {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Products</SelectItem>
-            <SelectItem value="nuts">Nuts (Cashews, Almonds)</SelectItem>
-            <SelectItem value="seeds">Seeds</SelectItem>
-            <SelectItem value="dried-fruits">Dried Fruits (Raisins)</SelectItem>
-            <SelectItem value="gift-boxes">Mixtures & Gift Boxes</SelectItem>
+            <SelectItem value="almonds">Almonds</SelectItem>
+            <SelectItem value="cashews">Cashews</SelectItem>
+            <SelectItem value="raisins">Raisins</SelectItem>
+            <SelectItem value="trailmix">Mixture</SelectItem>
+            <SelectItem value="fuxnuts">Fuxnuts</SelectItem>
           </SelectContent>
         </Select>
       </div>
