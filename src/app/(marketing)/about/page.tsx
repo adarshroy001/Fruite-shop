@@ -53,10 +53,10 @@ export default function AboutPage() {
         <section className="grid md:grid-cols-2 gap-8 items-center">
           <div>
             <h2 className="text-3xl font-bold tracking-tight mb-4">
-              About Farmley
+              About Farmlyf
             </h2>
             <p className="text-muted-foreground mb-4">
-              At Farmley, we believe that great taste begins at the root — with
+              At Farmlyf, we believe that great taste begins at the root — with
               the farmer. We are a farmer-first brand committed to bringing you
               premium dry fruits sourced directly from trusted farms across
               India. By eliminating middlemen and embracing ethical sourcing, we
